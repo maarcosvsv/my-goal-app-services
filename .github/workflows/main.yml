@@ -18,5 +18,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Testing call
-      run: ssh -i {{secrets.key}} {{secrets.username}}@{{secrets.host}}
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/staging.key
+          chmod 600 ~/.ssh/staging.key
+          cat >>~/.ssh/config <<END
+          Host staging
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/staging.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.USER }}
+          SSH_KEY: ${{ secrets.KEY }}
+          SSH_HOST: ${{ secrets.HOST }}
+
+      - name: Test
+        run: ssh staging ' echo test > test.txt '
