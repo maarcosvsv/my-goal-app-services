@@ -8,12 +8,12 @@ public interface MetaDao {
 
     List<Meta> findAll();
 
-    void insertMeta(Meta emp);
+    void insertMeta(Meta meta);
 
-    void updateMeta(Meta emp);
+    void updateMeta(Meta meta);
 
-    void executeUpdateMeta(Meta emp);
+    void executeUpdateMeta(Meta meta);
 
-    void deleteMeta(Meta emp);
+    void deleteMeta(Meta meta);
 
 }
