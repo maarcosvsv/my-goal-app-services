@@ -15,28 +15,28 @@ public class MetaController {
         MetaService metaService;
 
         @GetMapping(value = "/list")
-        public List<Meta> getEmployees() {
+        public List<Meta> getMetas() {
             return metaService.findAll();
         }
 
         @PostMapping(value = "/createMeta")
-        public void createEmployee(@RequestBody Meta meta) {
+        public void insertMeta(@RequestBody Meta meta) {
             metaService.insertMeta(meta);
 
         }
         @PutMapping(value = "/updateMeta")
-        public void updateEmployee(@RequestBody Meta meta) {
+        public void updateMeta(@RequestBody Meta meta) {
             metaService.updateMeta(meta);
 
         }
         @PutMapping(value = "/executeUpdateMeta")
-        public void executeUpdateEmployee(@RequestBody Meta meta) {
+        public void executeUpdateMata(@RequestBody Meta meta) {
             metaService.executeUpdateMeta(meta);
 
         }
 
         @DeleteMapping(value = "/deleteMetaById")
-        public void deleteEmployee(@RequestBody Meta meta) {
+        public void deleteMetaById(@RequestBody Meta meta) {
             metaService.deleteMeta(meta);
 
         }
