@@ -1,4 +1,6 @@
 package br.com.personal.metasprofissionais.entity;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
 public class Meta {
@@ -8,7 +10,10 @@ public class Meta {
     private String descricao;
     private Integer pontos;
     private Integer duracao;
+
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime dataCriacao;
+    private Long diasRestantes;
 
     public Long getId() {
         return id;
@@ -56,5 +61,13 @@ public class Meta {
 
     public void setDataCriacao(LocalDateTime dataCriacao) {
         this.dataCriacao = dataCriacao;
+    }
+
+    public Long getDiasRestantes() {
+        return diasRestantes;
+    }
+
+    public void setDiasRestantes(Long diasRestantes) {
+        this.diasRestantes = diasRestantes;
     }
 }

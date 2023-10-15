@@ -6,6 +6,8 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 public class MetaRowMapper implements RowMapper<Meta> {
 
@@ -18,6 +20,17 @@ public class MetaRowMapper implements RowMapper<Meta> {
         meta.setPontos(rs.getInt("pontos"));
         meta.setDuracao(rs.getInt("duracao"));
         meta.setDataCriacao(rs.getTimestamp("dt_criacao").toLocalDateTime());
+
+        LocalDateTime dataAtual = LocalDateTime.now();
+        Duration diferenca = Duration.between(meta.getDataCriacao(), dataAtual);
+        Long diasRestantes = diferenca.toDays();
+
+        if(diasRestantes.compareTo(meta.getDuracao().longValue()) >= 0 ){
+            meta.setDiasRestantes(-1L);
+        } else {
+            meta.setDiasRestantes(diasRestantes);
+        }
+
 
         return meta;
     }
